@@ -1,0 +1,57 @@
+
+<div class="container">
+	<h2>{{title}}</h2>
+
+	<div class = "message success" *ngIf="status == 'success'">
+		Succesfully created project into DataBase!
+	</div>
+
+	<div class = "message failed" *ngIf="status == 'failed'">
+		Failed creating project into DataBase!
+	</div>
+
+	<form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)">
+		<p>
+			<label for="name">Name:</label>
+			<input type="text" name="name" #name="ngModel" [(ngModel)]="project.name" required/>
+			<span *ngIf="name.touched && !name.valid"> Required Field! </span>
+
+
+		</p>
+
+		<p>
+			<label for="description">Description:</label>
+			<textarea name="description" #description="ngModel" [(ngModel)]="project.description" required></textarea>
+			<span *ngIf="description.touched && !description.valid"> Required Field! </span>
+
+		</p>
+
+		<p>
+			<label for="category">Category:</label>
+			<input type="text" name="category" #category="ngModel" [(ngModel)]="project.category" required />
+			<span *ngIf="category.touched && !category.valid"> Required Field! </span>
+
+		</p>
+
+		<p>
+			<label for="year">Year:</label>
+			<input type="number" name="year" #name="ngModel" [(ngModel)]="project.year" />
+
+		</p>
+
+		<p>
+			<label for="langs">Languages:</label>
+			<input type="text" name="langs" #name="ngModel" [(ngModel)]="project.langs" required/>
+			<!-- <span *ngIf="langs.touched && !langs.valid"> Required Field! </span> -->
+		</p>
+
+		<p>
+			<label for="image">image:</label>
+			<input type="file" name="image" placeholder="Upload Image" (change)="fileChangeEvent($event)"/>
+
+		</p>
+
+		<input type="submit" value="Send" [disabled]="!projectForm.form.valid" />
+	</form>
+
+</div>
